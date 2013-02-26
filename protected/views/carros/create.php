@@ -1,0 +1,1 @@
+<?php echo $this->renderPartial('_form', array('veiculos'=>$veiculos,'carros'=>$carros)); ?>
