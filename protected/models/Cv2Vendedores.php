@@ -56,7 +56,7 @@ class Cv2Vendedores extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('email, id_tipo, telefone', 'required','message'=>'{attribute} não pode ficar em branco.'),
+			array('email, id_tipo, telefone, nome', 'required','message'=>'{attribute} deve ser preenchido.'),
 			array('id_tipo, bloqueado, cpf, cnpj, telefone, celular', 'numerical', 'integerOnly'=>true,'message'=>'Somente números'),
 			array('nome, email', 'length', 'max'=>50),
 			array('nome_fantasia, razao_social', 'length', 'max'=>250),
@@ -95,11 +95,11 @@ class Cv2Vendedores extends CActiveRecord
 			'id' => 'ID',
 			'nome' => 'Nome',
 			'nome_fantasia' => 'Nome Fantasia',
-			'razao_social' => 'Razao Social',
-			'cpf' => 'Cpf',
-			'cnpj' => 'Cnpj',
-			'celular' => 'Celular',
-			'telefone' => 'Telefone',
+			'razao_social' => 'Razão Social',
+			'cpf' => 'CPF',
+			'cnpj' => 'CNPJ',
+			'celular' => '(DDD)Celular',
+			'telefone' => '(DDD)Telefone',
 			'data' => 'Data',
 			'email' => 'Email',
 			'id_tipo' => 'Id Tipo',

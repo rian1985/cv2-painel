@@ -76,9 +76,9 @@ class Cv2VeiculosMotos extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'modelo' => 'Modelo',
-			'quilometros' => 'Quilometros',
-			'freios' => 'Freios',
-			'tipo_motor' => 'Tipo Motor',
+			'quilometros' => 'Quilômetros',
+			'freios' => 'Sistema de freios',
+			'tipo_motor' => 'Marca motor',
 			'partida' => 'Partida',
 			'cor' => 'Cor',
 			'alarme' => 'Alarme',

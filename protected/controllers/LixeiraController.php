@@ -46,6 +46,15 @@ WHERE cv2_veiculos_veiculos.`status` = 1;")->queryAll();
         ));
     }
     
+    public function actionPropostasRecebidas()
+	{
+		 $propostas = Yii::app()->db->createCommand("SELECT cv2_propostas_recebidas.nome, cv2_propostas_recebidas.status, cv2_propostas_recebidas.id, cv2_propostas_recebidas.proposta, cv2_propostas_recebidas.email, cv2_propostas_recebidas.data, cv2_veiculos_veiculos.id_vendedor, cv2_veiculos_tipos.descricao  FROM centraldoveicu.cv2_propostas_recebidas INNER JOIN cv2_veiculos_veiculos ON cv2_propostas_recebidas.id_veiculo = cv2_veiculos_veiculos.id INNER JOIN cv2_veiculos_tipos ON cv2_veiculos_veiculos.id_tipo = cv2_veiculos_tipos.id
+WHERE cv2_veiculos_veiculos.id_vendedor = ".Yii::app()->user->id_vendedor." AND cv2_propostas_recebidas.status = 1  ORDER BY cv2_propostas_recebidas.data DESC;")->queryAll();
+		$this->render('propostasRecebidas', array(
+            'propostas' => $propostas,
+        ));
+    }
+    
      public function actionRestaurar() {
         $id = $_GET['id'];
         // we only allow deletion via POST request

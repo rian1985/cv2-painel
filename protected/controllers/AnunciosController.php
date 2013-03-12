@@ -47,7 +47,6 @@ AND cv2_veiculos_movimentacoes.data = (SELECT MAX(cv2m2.data)
                                        WHERE cv2m2.id_veiculo = cv2_veiculos_movimentacoes.id_veiculo)
 AND cv2_veiculos_movimentacoes.id_tipo = 1 AND cv2_veiculos_veiculos.id_vendedor = ".Yii::app()->user->id_vendedor.";
 ")->queryAll();
-//                 var_dump($list);exit;
          $this->render('index', array(
             'list' => $list,
         ));

@@ -62,18 +62,67 @@ class CaminhoesController extends Controller
    $veiculos->attributes=$_POST['Cv2VeiculosVeiculos'];
 
    $caminhoes->attributes=$_POST['Cv2VeiculosCaminhoes'];  
-  
-   $str = '';
-if(isset($veiculos->itens)){
-    $str = implode(',',$veiculos->itens);
+
+   if(($_POST['Cv2VeiculosCaminhoes']['conforto']) > 1){
+    $str = implode(',',$_POST['Cv2VeiculosCaminhoes']['conforto']);
     
-    $veiculos->itens = $str;
+    $caminhoes->conforto = $str;
+}
+
+if(($_POST['Cv2VeiculosCaminhoes']['seguranca']) > 1){
+    $str3 = implode(',',$_POST['Cv2VeiculosCaminhoes']['seguranca']);
+    
+    $caminhoes->seguranca = $str3;
+}
+
+if(($_POST['Cv2VeiculosCaminhoes']['som']) > 1){
+    $str4 = implode(',',$_POST['Cv2VeiculosCaminhoes']['som']);
+    
+    $caminhoes->som = $str4;
 }
 
    $veiculos->id_tipo = 3;
    $veiculos->id_vendedor = Yii::app()->user->id_vendedor;
    $movimentacao->id_tipo = 1;
-   if($veiculos->validate()){ 
+   if($veiculos->validate()){
+                               ###################################################
+			################ UPLOAD DE IMAGENS ################
+			###################################################
+			
+			Yii::import('application.extensions.upload.Upload');
+			
+			$imgs = array();
+			foreach ($_FILES['Cv2VeiculosVeiculos'] as $k => $l) {
+				if (is_array($l)) {
+					foreach ($l as $i => $v) {
+						if (!array_key_exists($i, $imgs))
+							$imgs[$i] = array();
+						$imgs[$i][$k] = $v;
+					}
+				} else {
+					$imgs[0][$k] = $l;
+				}
+			}
+			
+			$i = 1;
+			foreach ($imgs as $img) {
+				set_time_limit(0);
+
+				$imagem = new Upload($img);
+
+				if ($imagem->uploaded) {
+					$pasta = '../imagens/' . $veiculos->id_vendedor . '/';
+					$imagem->process($pasta);
+					if ($imagem->processed) {
+						$veiculos->{"foto_$i"} = $imagem->file_dst_name;
+						$imagem->clean();
+					} else {
+						echo 'error : ' . $imagem->error;
+					}
+				}
+				$i++;
+			}
+       
      $veiculos->save(); 
      $caminhoes->id_veiculo = $veiculos->primaryKey;
      $movimentacao->id_veiculo = $veiculos->primaryKey;
@@ -107,6 +156,18 @@ $caminhoes=Cv2VeiculosCaminhoes::model()->find('id_veiculo = :id_veiculo', array
 $movimentacao=Cv2VeiculosMovimentacoes::model()->find('id_veiculo = :id_veiculo', array(':id_veiculo' => $id));
 $movimentacao2=Cv2VeiculosMovimentacoes::model()->find('id_veiculo = :id_veiculo', array(':id_veiculo' => $id));
 
+if(isset($caminhoes->conforto)){
+    $caminhoes->conforto = explode(',', $caminhoes->conforto);
+}
+
+if(isset($caminhoes->seguranca)){
+    $caminhoes->seguranca = explode(',', $caminhoes->seguranca);
+}
+
+if(isset($caminhoes->som)){
+    $caminhoes->som = explode(',', $caminhoes->som);
+}
+
          $this->performAjaxValidation(array($veiculos,$caminhoes));
  if(!empty($_POST)){
 
@@ -119,8 +180,71 @@ if(isset($veiculos->itens)){
     
     $veiculos->itens = $str;
 }
+
+ if(($_POST['Cv2VeiculosCaminhoes']['conforto']) > 1){
+    $str = implode(',',$_POST['Cv2VeiculosCaminhoes']['conforto']);
+    
+    $caminhoes->conforto = $str;
+}
+
+if(($_POST['Cv2VeiculosCaminhoes']['seguranca']) > 1){
+    $str3 = implode(',',$_POST['Cv2VeiculosCaminhoes']['seguranca']);
+    
+    $caminhoes->seguranca = $str3;
+}
+
+if(($_POST['Cv2VeiculosCaminhoes']['som']) > 1){
+    $str4 = implode(',',$_POST['Cv2VeiculosCaminhoes']['som']);
+    
+    $caminhoes->som = $str4;
+}
+
+if(($_POST['Cv2VeiculosCaminhoes']['som']) > 1){
+    $str4 = implode(',',$_POST['Cv2VeiculosCaminhoes']['som']);
+    
+    $caminhoes->som = $str4;
+}
+         
          
   if($veiculos->validate()){ 
+                        ###################################################
+			################ UPLOAD DE IMAGENS ################
+			###################################################
+			
+			Yii::import('application.extensions.upload.Upload');
+			
+			$imgs = array();
+			foreach ($_FILES['Cv2VeiculosVeiculos'] as $k => $l) {
+				if (is_array($l)) {
+					foreach ($l as $i => $v) {
+						if (!array_key_exists($i, $imgs))
+							$imgs[$i] = array();
+						$imgs[$i][$k] = $v;
+					}
+				} else {
+					$imgs[0][$k] = $l;
+				}
+			}
+			
+			$i = 1;
+			foreach ($imgs as $img) {
+				set_time_limit(0);
+
+				$imagem = new Upload($img);
+
+				if ($imagem->uploaded) {
+					$pasta = '../imagens/' . $veiculos->id_vendedor . '/';
+					$imagem->process($pasta);
+					if ($imagem->processed) {
+						$veiculos->{"foto_$i"} = $imagem->file_dst_name;
+						$imagem->clean();
+					} else {
+						echo 'error : ' . $imagem->error;
+					}
+				}
+				$i++;
+			}
+      
      $veiculos->save();
      
      $caminhoes->id_veiculo = $veiculos->primaryKey;
@@ -191,6 +315,24 @@ if(isset($veiculos->itens)){
         }
        
     }
+    
+    public function actionVender($id) {
+        $movimentacao = new Cv2VeiculosMovimentacoes;
+
+             if (isset($id) && $id > 0) {
+             $veiculos=$this->loadModel($id);
+            
+             $movimentacao->id_tipo = 2;
+     $movimentacao->id_veiculo = $veiculos->primaryKey;
+   if($movimentacao->validate()){ 
+     $movimentacao->save(); 
+           
+           
+               $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/anuncios'));
+        }
+       
+    }
+     }
     
     
     

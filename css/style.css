@@ -142,6 +142,10 @@ body{
 	font-size:13px;color:#333333;margin:0;padding:0
 }
 
+.CaixaPaginas p a{
+	font-size:13px;color:#3399FF;
+}
+
 .NomeVeiculo{
 	float:left;color:#333333
 }
@@ -218,6 +222,10 @@ body{
 	font-size:15px;color:#3399FF;padding:5px;height:38px;
 }
 
+.ListagemMenus{
+	font-size:15px;color:#3399FF;padding:5px;height:32px;
+}
+
 .ListagemVendedores{
 	font-size:15px;color:#3399FF;padding:5px;height:58px;
 }
@@ -234,8 +242,20 @@ body{
 	font-size:12px;color:#666666;padding-top:2px
 }
 
+.CheckMenu{
+	width:30px;float:left
+}
+
 #ItensAcaoMsg{
 	float:right;
+}
+
+.ItensAcaoMenus{
+	display:none;font-size:11px;padding-top:0px;color:#999999;margin-left:30px;
+}
+
+.ItensAcaoMenus a.Editar{
+	color:#3399FF;text-decoration:none
 }
 
 .ItensAcao{

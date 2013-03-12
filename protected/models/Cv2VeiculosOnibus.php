@@ -77,13 +77,16 @@ class Cv2VeiculosOnibus extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'modelo' => 'Modelo',
-			'quilometros' => 'Quilometros',
-			'combustivel' => 'Combustivel',
-			'quantidade_pessoas' => 'Quantidade Pessoas',
+			'quilometros' => '
+Quilômetros',
+			'combustivel' => '
+Combustível',
+			'quantidade_pessoas' => 'Quantidade de pessoas',
 			'direcao' => 'Direcao',
-			'transmissao' => 'Transmissao',
+			'transmissao' => '
+Transmissão',
 			'carroceria' => 'Carroceria',
-			'quantidade_andares' => 'Quantidade Andares',
+			'quantidade_andares' => 'Quantidade de andares',
 			'id_veiculo' => 'Id Veiculo',
 		);
 	}

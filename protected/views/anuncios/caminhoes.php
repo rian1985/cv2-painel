@@ -1,7 +1,6 @@
-<div class="TituloPaginas">Veículos cadastrados<div class="FiltroAnuncios"><a href="<?php echo $this->createUrl('/anuncios'); ?>">Todos</a> | <a href="<?php echo $this->createUrl('/anuncios/carros'); ?>">Carros</a> | <a href="<?php echo $this->createUrl('/anuncios/motos'); ?>">Motos</a> | <a href="<?php echo $this->createUrl('/anuncios/caminhoes'); ?>">Caminhões</a> | <a href="<?php echo $this->createUrl('/anuncios/onibus'); ?>">Ônibus</a> | <a href="<?php echo $this->createUrl('/anuncios/nautica'); ?>">Naútica</a> | <a href="<?php echo $this->createUrl('/anuncios/outros'); ?>">Outros</a></div></div>
+<div class="TituloPaginas">Veículos anunciados<div class="FiltroAnuncios"><a href="<?php echo $this->createUrl('/anuncios'); ?>">Todos</a> | <a href="<?php echo $this->createUrl('/anuncios/carros'); ?>">Carros</a> | <a href="<?php echo $this->createUrl('/anuncios/motos'); ?>">Motos</a> | <a href="<?php echo $this->createUrl('/anuncios/caminhoes'); ?>">Caminhões</a> | <a href="<?php echo $this->createUrl('/anuncios/onibus'); ?>">Ônibus</a> | <a href="<?php echo $this->createUrl('/anuncios/nautica'); ?>">Náutica</a> | <a href="<?php echo $this->createUrl('/anuncios/outros'); ?>">Outros</a></div></div>
 <div class="CaixaPaginas">
-
-    <?php
+	<?php
                if (count($list) > 0){
                             foreach ($list as $veiculos):
                                 ?>
@@ -15,13 +14,34 @@
 <?php } ?>
         <div class="TipoVeiculo"><?php echo $veiculos['tipo']; ?></div>
         <div style="clear:both"></div>
-        <div class="ItensAcao"><a href="#" class="Visualizar">Visualizar</a> | <a href="#" class="Destacado">Tirar destaque</a> | <a href="<?php //echo $this->createUrl('cv2_veiculos_veiculos/update/')."?cod_veiculo=$veiculos->cod_veiculo"; ?>" class="Alterar">Alterar</a> | <a href="<?php //echo $this->createUrl('cv2_veiculos_veiculos/delete/')."?cod_veiculo=$veiculos->cod_veiculo"; ?>" class="Apagar">Apagar</a></div>
-    </div>                
-                                    <!-- <td ><?php //echo CHtml::image(Yii::app()->request->baseUrl . "/images/clients/" . $customer->image, '', array('width' => '100px')); ?> -->
-                                <?php
+        <?php if($veiculos['destaque'] === '1'){?>
+         <div class="ItensAcao"> <?php if($veiculos['tipo'] === 'Caminhão'){ ?><a href="#" class="Visualizar">Visualizar</a> 
+            | <a href="<?php echo $this->createUrl('caminhoes/tiraDestaque/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Tirar destaque</a> 
+             | <a href="<?php echo $this->createUrl('caminhoes/vender/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Vender</a>
+             | <a href="<?php echo $this->createUrl('caminhoes/update/') . "?id=".$veiculos['id']." "; ?>" class="Alterar">Alterar</a> 
+            | <a href="<?php echo $this->createUrl('caminhoes/delete/') . "?id=".$veiculos['id']." "; ?>" class="Apagar">Apagar</a> <?php } ?>
+
+         </div>
+             
+   <?php } if($veiculos['destaque'] === '0') { ?>
+         <div class="ItensAcao"><?php if($veiculos['tipo'] === 'Caminhão'){ ?><a href="#" class="Visualizar">Visualizar</a> 
+             | <a href="<?php echo $this->createUrl('caminhoes/destaque/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Destacar</a> 
+              | <a href="<?php echo $this->createUrl('caminhoes/vender/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Vender</a>
+              | <a href="<?php echo $this->createUrl('caminhoes/update/') . "?id=".$veiculos['id']." "; ?>" class="Alterar">Alterar</a> 
+           | <a href="<?php echo $this->createUrl('caminhoes/delete/') . "?id=".$veiculos['id']." "; ?>" class="Apagar">Apagar</a> <?php } ?>
+     
+         </div>
+
+         <?php } ?>
+            
+               
+    
+                               </div>                
+                                   
+                                        <?php
                             endforeach;
                } else { ?>
-                 <p>Você não tem veículos deste tipo cadastrado.</p>
+                 <p>Você não tem veículos cadastrados.</p>
                <?php } ?>
                         
     

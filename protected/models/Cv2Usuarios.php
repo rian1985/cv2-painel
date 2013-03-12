@@ -48,7 +48,7 @@ class Cv2Usuarios extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('usuario, senha, nome, id_vendedor, id_grupos_usuarios, tipo', 'required','message'=>'{attribute} deve ser preenchido'),
+			array('usuario, senha, nome, tipo, id_vendedor, id_grupos_usuarios, tipo', 'required','message'=>'{attribute} deve ser preenchido'),
 			array('status, id_vendedor, id_grupos_usuarios', 'numerical', 'integerOnly'=>true),
 			array('usuario, nome', 'length', 'max'=>50),
 			array('senha', 'length', 'max'=>30),
@@ -87,7 +87,7 @@ class Cv2Usuarios extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'usuario' => 'Usuario',
+			'usuario' => 'Usuário',
 			'senha' => 'Senha',
 			'nome' => 'Nome',
 			'data_entrada' => 'Data Entrada',

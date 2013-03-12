@@ -38,23 +38,55 @@ class ClientesController extends Controller
 
 public function actionCreate() {
   $vendedores = new Cv2Vendedores;
- $usuarios = new Cv2Usuarios;
- $localizacoes = new Cv2Localizacoes;          
-     
-  $this->performAjaxValidation(array($vendedores,$usuarios,$localizacoes)); 
-  
+  $usuarios = new Cv2Usuarios;
+  $localizacoes = new Cv2Localizacoes; 
+   $templateVendedor = new Cv2VendedoresTemplates;
+ $this->performAjaxValidation(array($vendedores,$usuarios,$localizacoes)); 
+//  $this->performAjaxValidation($vendedores,$usuarios,$localizacoes); 
+  $usuarios->tipo = 'F';
    if(!empty($_POST)){
    $vendedores->attributes=$_POST['Cv2Vendedores'];
    $usuarios->attributes=$_POST['Cv2Usuarios'];  
    $localizacoes->attributes=$_POST['Cv2Localizacoes'];
    
+    $valid=$usuarios->validate();
+     $valid2=$vendedores->validate();
+        $valid=$localizacoes->validate() && $valid && $valid2;
+
    $vendedores->id_tipo = 3;
    
    if($vendedores->validate()){ 
      $vendedores->save();
      
-     $usuarios->id_vendedor = $vendedores->primaryKey;
-     $usuarios->nome = $vendedores->nome;
+                  $templateVendedor->idVendedor = $vendedores->primaryKey;
+                  $templateVendedor->idTemplate = 1;
+
+                  $templateVendedor->save();
+     
+     $dados = array('/home' => 'Home','/quem-somos' =>'Quem somos','/financiamento' =>'Financiamento','/servicos' =>'Serviços','/contato' =>'Contato','/parceiros' =>'Parceiros','/noticias' =>'Notícias','/veiculos-novos' =>'Veículos novos','/veiculos-usados' =>'Veículos usados','/repasse' =>'Repasse','/duvidas-frequentes' =>'Dúvidas frequentes');
+
+foreach($dados as $url => $valor){
+ $menu = new Cv2Menus;
+
+ $menu->id_vendedor = $vendedores->primaryKey;
+ $menu->nome = $valor;
+ $menu->url = $url;
+ $menu->save();
+ }
+  $dados2 = array('Home' => 3,'Quem somos' => 3,'Financiamento' => 2,'Serviços' => 3,'Contato'  => 1,'Parceiros'  => 3,'Notícias'  => 3,'Veículos novos' => 3,'Veículos usados' => 3,'Repasse' => 3,'Dúvidas frequentes' => 3);
+
+foreach($dados2 as $valor => $id){
+ $pagina = new Cv2Paginas;
+ $pagina->id_tipo_pagina = $id;
+ $pagina->id_vendedor = $vendedores->primaryKey;
+ $pagina->save();
+}
+
+ $usuarios->id_vendedor = $vendedores->primaryKey;
+ 
+$nova_string = preg_replace("/[^a-zA-Z\s]/", "", $vendedores->nome);
+ $usuarios->nome = $nova_string;
+
      $usuarios->id_grupos_usuarios = 2;
      $usuarios->save();
      
@@ -75,12 +107,11 @@ public function actionCreate() {
 	public function actionUpdate($id){
 
  $vendedores=$this->loadModel($id);
-$usuarios=Cv2Usuarios::model()->find('id_vendedor = :id_vendedor', array(':id_vendedor' => $id));
+ $usuarios=Cv2Usuarios::model()->find('id_vendedor = :id_vendedor', array(':id_vendedor' => $id));
  $localizacoes=Cv2Localizacoes::model()->find('id_vendedor = :id_vendedor', array(':id_vendedor' => $vendedores->primaryKey));
 
          $this->performAjaxValidation(array($vendedores,$usuarios,$localizacoes));
  if(!empty($_POST)){
-
   $vendedores->attributes=$_POST['Cv2Vendedores'];
   $usuarios->attributes=$_POST['Cv2Usuarios'];  
   $localizacoes->attributes=$_POST['Cv2Localizacoes'];
@@ -105,6 +136,56 @@ $usuarios=Cv2Usuarios::model()->find('id_vendedor = :id_vendedor', array(':id_ve
     ));
 }
 
+public function actionDados($id){
+
+ $vendedores=$this->loadModel($id);
+ $usuarios=Cv2Usuarios::model()->find('id_vendedor = :id_vendedor', array(':id_vendedor' => $id));
+ $localizacoes=Cv2Localizacoes::model()->find('id_vendedor = :id_vendedor', array(':id_vendedor' => $vendedores->primaryKey));
+
+         $this->performAjaxValidation(array($vendedores,$usuarios,$localizacoes));
+ if(!empty($_POST)){
+
+  $vendedores->attributes=$_POST['Cv2Vendedores'];
+  $usuarios->attributes=$_POST['Cv2Usuarios'];  
+  $localizacoes->attributes=$_POST['Cv2Localizacoes'];
+   
+  if($vendedores->validate()){ 
+   $vendedores->save();
+   
+   foreach($_POST['Cv2Localizacoes'] as $value){
+ $localizacao = new Cv2Localizacoes;
+ $localizacao->descricao = $value->descricao;
+ $localizacao->rua = $value->rua;
+ $localizacao->numero = $value->numero;
+ $localizacao->complemento = $value->complemento;
+  $localizacao->bairro = $value->bairro;
+   $localizacao->id_uf = $value->id_uf;
+    $localizacao->id_cidade = $value->id_cidade;
+     $localizacao->cep = $value->cep;
+      $localizacao->celular = $value->celular;
+       $localizacao->telefone = $value->telefone;
+       
+ if($localizacao->validate())
+  $localizacao->save();
+}
+
+   $usuarios->id_vendedor = $vendedores->primaryKey;
+   $usuarios->save();
+
+   $localizacoes->id_vendedor = $vendedores->primaryKey;
+   $localizacoes->save();
+
+   $this->redirect(array('index'));
+  }
+ }
+       
+    $this->render('dados',array(
+        'vendedores'=>$vendedores,
+        'usuarios'=>$usuarios,
+        'localizacoes'=>$localizacoes,
+    ));
+}
+
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -115,10 +196,11 @@ $usuarios=Cv2Usuarios::model()->find('id_vendedor = :id_vendedor', array(':id_ve
                 $vendedores=$this->loadModel($id);
                 $usuarios=Cv2Usuarios::model()->find('id_vendedor = :id_vendedor', array(':id_vendedor' => $id));
                 $localizacoes=Cv2Localizacoes::model()->find('id_vendedor = :id_vendedor', array(':id_vendedor' => $vendedores->primaryKey));
-             
+ 
  $usuarios->delete();
  $localizacoes->delete();
 $vendedores->delete();
+
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
@@ -168,12 +250,12 @@ $vendedores->delete();
 	 * Performs the AJAX validation.
 	 * @param CModel the model to be validated
 	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='cv2-vendedores-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-	}
+protected function performAjaxValidation($models)
+{
+    if(isset($_POST['ajax']) && $_POST['ajax']==='cv2-vendedores-form')
+    {
+        echo CActiveForm::validate($models);
+        Yii::app()->end();
+    }
+}
 }

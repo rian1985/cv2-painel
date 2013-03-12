@@ -70,7 +70,7 @@ class Cv2VeiculosVeiculos extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('descricao, valor, ano, id_vendedor, id_marca, id_tipo, id_localizacao, destaque, anunciado', 'required','message'=>'{attribute} não pode ficar em branco.'),
-			array('visualizacoes, ano, unico_dono, id_vendedor, id_marca, id_tipo, id_localizacao, status', 'numerical', 'integerOnly'=>true),
+			array('visualizacoes, ano, unico_dono, condicoes, id_vendedor, id_marca, id_tipo, id_localizacao, status', 'numerical', 'integerOnly'=>true),
 			array('descricao', 'length', 'max'=>150),
 			array('foto_1, foto_2, foto_3, foto_4, foto_5, foto_6', 'length', 'max'=>50),
 			array('valor, valor_promocional', 'length', 'max'=>20),
@@ -78,7 +78,7 @@ class Cv2VeiculosVeiculos extends CActiveRecord
                     // array('foto_1,foto_2,foto_3,foto_4,foto_5,foto_6', 'file', 'types'=>'jpg, gif, png'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, descricao, visualizacoes, destaque, anunciado, foto_1, foto_2, foto_3, foto_4, foto_5, foto_6, valor, valor_promocional, itens, observacoes, data_cadastro, ano, unico_dono, id_vendedor, id_marca, id_tipo, id_localizacao, status', 'safe', 'on'=>'search'),
+			array('id, descricao, visualizacoes, destaque, anunciado, foto_1, foto_2, foto_3, foto_4, foto_5, foto_6, valor, valor_promocional, itens, observacoes, data_cadastro, ano, unico_dono, condicoes, id_vendedor, id_marca, id_tipo, id_localizacao, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -120,24 +120,27 @@ class Cv2VeiculosVeiculos extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'descricao' => 'Descricao',
-			'visualizacoes' => 'Visualizacoes',
+			'visualizacoes' => 'Visualizações',
 			'foto_1' => 'Foto 1',
 			'foto_2' => 'Foto 2',
 			'foto_3' => 'Foto 3',
 			'foto_4' => 'Foto 4',
 			'foto_5' => 'Foto 5',
 			'foto_6' => 'Foto 6',
-			'valor' => 'Valor',
-			'valor_promocional' => 'Valor Promocional',
+			'valor' => 'Valor (R$)',
+			'valor_promocional' => 'Valor promocional (R$)',
 			'itens' => 'Itens',
-			'observacoes' => 'Observacoes',
-			'data_cadastro' => 'Data Cadastro',
+			'observacoes' => 'Observações',
+			'data_cadastro' => 'Data cadastro',
 			'ano' => 'Ano',
-			'unico_dono' => 'Unico Dono',
+			'unico_dono' => '
+Único Dono? ',
+                    'condicoes' => '
+Condições Do Veículo?',
 			'id_vendedor' => 'Vendedor',
 			'id_marca' => 'Marca',
 			'id_tipo' => 'Tipo',
-			'id_localizacao' => 'Localizacao',
+			'id_localizacao' => 'Localização',
 			'status' => 'Status',
                     'destaque' => 'Anunciar este veículo no portal centraldoveiculo.com.br como DESTAQUE na home do portal, custo de R$ 9,90 por veículo.',
                     'anunciado' => 'Anunciar este veículo no portal centraldoveiculo.com.br, não gera qualquer tipo de custo é gratuito.'
@@ -178,9 +181,13 @@ class Cv2VeiculosVeiculos extends CActiveRecord
 		$criteria->compare('status',$this->status);
                 $criteria->compare('destaque',$this->destaque);
                 $criteria->compare('anunciado',$this->anunciado);
+                $criteria->compate('condicoes',$this->condicoes);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+                
 	}
+        
+       
 }

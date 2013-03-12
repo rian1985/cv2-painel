@@ -66,10 +66,6 @@
 		<?php echo $form->textField($model,'valor_promocional',array('size'=>20,'maxlength'=>20)); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'itens'); ?>
-		<?php echo $form->textArea($model,'itens',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'observacoes'); ?>

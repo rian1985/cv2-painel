@@ -52,7 +52,7 @@ class Cv2VeiculosCarros extends CActiveRecord
 			array('direcao, cor', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, modelo, portas, quilometros, combustivel, direcao, transmissao, cor, id_veiculo', 'safe', 'on'=>'search'),
+			array('id, modelo, portas, quilometros, combustivel, direcao, transmissao, conforto, seguranca, exterior, som, cor, id_veiculo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -77,12 +77,16 @@ class Cv2VeiculosCarros extends CActiveRecord
 			'id' => 'ID',
 			'modelo' => 'Modelo',
 			'portas' => 'Portas',
-			'quilometros' => 'Quilometros',
-			'combustivel' => 'Combustivel',
-			'direcao' => 'Direcao',
-			'transmissao' => 'Transmissao',
+			'quilometros' => 'Quilômetros',
+			'combustivel' => 'Combustível',
+			'direcao' => 'Direção',
+			'transmissao' => 'Transmissão',
 			'cor' => 'Cor',
 			'id_veiculo' => 'Id Veiculo',
+                    'conforto' => 'conforto',
+                    'seguranca' => 'seguranca',
+                    'exterior' => 'exterior',
+                    'som' => 'som'
 		);
 	}
 
@@ -104,6 +108,10 @@ class Cv2VeiculosCarros extends CActiveRecord
 		$criteria->compare('combustivel',$this->combustivel,true);
 		$criteria->compare('direcao',$this->direcao,true);
 		$criteria->compare('transmissao',$this->transmissao,true);
+                $criteria->compare('conforto',$this->conforto,true);
+                $criteria->compare('seguranca',$this->seguranca,true);
+                $criteria->compare('exterior',$this->exterior,true);
+                $criteria->compare('som',$this->som,true);
 		$criteria->compare('cor',$this->cor,true);
 		$criteria->compare('id_veiculo',$this->id_veiculo);
 

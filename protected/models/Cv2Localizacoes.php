@@ -49,7 +49,7 @@ class Cv2Localizacoes extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_vendedor, id_uf, id_cidade', 'required'),
+			array('id_vendedor, id_uf, id_cidade', 'required','message'=>'{attribute} deve ser preenchido.'),
 			array('id_vendedor, id_uf, id_cidade', 'numerical', 'integerOnly'=>true),
 			array('descricao', 'length', 'max'=>250),
 			array('logradouro', 'length', 'max'=>150),
@@ -86,13 +86,13 @@ class Cv2Localizacoes extends CActiveRecord
 			'id' => 'ID',
 			'descricao' => 'Descricao',
 			'logradouro' => 'Logradouro',
-			'numero' => 'Numero',
+			'numero' => 'Número',
 			'complemento' => 'Complemento',
 			'bairro' => 'Bairro',
-			'cep' => 'Cep',
+			'cep' => 'CEP',
 			'id_vendedor' => 'Id Vendedor',
-			'id_uf' => 'Id Uf',
-			'id_cidade' => 'Id Cidade',
+			'id_uf' => 'Estado',
+			'id_cidade' => 'Cidade',
 		);
 	}
 

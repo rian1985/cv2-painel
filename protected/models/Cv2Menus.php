@@ -41,7 +41,7 @@ class Cv2Menus extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nome, url, ativo, id_vendedor', 'required'),
+			array('nome, url, id_vendedor', 'required'),
 			array('id_vendedor', 'numerical', 'integerOnly'=>true),
 			array('nome, url, ativo', 'length', 'max'=>255),
 			// The following rule is used by search().

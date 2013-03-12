@@ -60,20 +60,72 @@ class OnibusController extends Controller
   
    if(!empty($_POST)){
    $veiculos->attributes=$_POST['Cv2VeiculosVeiculos'];
-
    $onibus->attributes=$_POST['Cv2VeiculosOnibus'];  
-  
-   $str = '';
-if(isset($veiculos->itens)){
-    $str = implode(',',$veiculos->itens);
+   if(($_POST['Cv2VeiculosCarros']['conforto']) > 1){
+    $str = implode(',',$_POST['Cv2VeiculosCarros']['conforto']);
     
-    $veiculos->itens = $str;
+    $carros->conforto = $str;
+}
+
+if(($_POST['Cv2VeiculosCarros']['exterior']) > 1){
+    $str2 = implode(',',$_POST['Cv2VeiculosCarros']['exterior']);
+    
+    $carros->exterior = $str2;
+}
+
+if(($_POST['Cv2VeiculosCarros']['seguranca']) > 1){
+    $str3 = implode(',',$_POST['Cv2VeiculosCarros']['seguranca']);
+    
+    $carros->seguranca = $str3;
+}
+
+if(($_POST['Cv2VeiculosCarros']['som']) > 1){
+    $str4 = implode(',',$_POST['Cv2VeiculosCarros']['som']);
+    
+    $carros->som = $str4;
 }
 
    $veiculos->id_tipo = 3;
    $veiculos->id_vendedor = Yii::app()->user->id_vendedor;
    $movimentacao->id_tipo = 1;
    if($veiculos->validate()){ 
+                               ###################################################
+			################ UPLOAD DE IMAGENS ################
+			###################################################
+			
+			Yii::import('application.extensions.upload.Upload');
+			
+			$imgs = array();
+			foreach ($_FILES['Cv2VeiculosVeiculos'] as $k => $l) {
+				if (is_array($l)) {
+					foreach ($l as $i => $v) {
+						if (!array_key_exists($i, $imgs))
+							$imgs[$i] = array();
+						$imgs[$i][$k] = $v;
+					}
+				} else {
+					$imgs[0][$k] = $l;
+				}
+			}
+			
+			$i = 1;
+			foreach ($imgs as $img) {
+				set_time_limit(0);
+
+				$imagem = new Upload($img);
+
+				if ($imagem->uploaded) {
+					$pasta = '../imagens/' . $veiculos->id_vendedor . '/';
+					$imagem->process($pasta);
+					if ($imagem->processed) {
+						$veiculos->{"foto_$i"} = $imagem->file_dst_name;
+						$imagem->clean();
+					} else {
+						echo 'error : ' . $imagem->error;
+					}
+				}
+				$i++;
+			}
      $veiculos->save(); 
      $onibus->id_veiculo = $veiculos->primaryKey;
      $movimentacao->id_veiculo = $veiculos->primaryKey;
@@ -107,6 +159,22 @@ $onibus=Cv2VeiculosOnibus::model()->find('id_veiculo = :id_veiculo', array(':id_
 $movimentacao=Cv2VeiculosMovimentacoes::model()->find('id_veiculo = :id_veiculo', array(':id_veiculo' => $id));
 $movimentacao2=Cv2VeiculosMovimentacoes::model()->find('id_veiculo = :id_veiculo', array(':id_veiculo' => $id));
 
+if(isset($carros->conforto)){
+    $carros->conforto = explode(',', $carros->conforto);
+}
+
+if(isset($carros->exterior)){
+    $carros->exterior = explode(',', $carros->exterior);
+}
+
+if(isset($carros->seguranca)){
+    $carros->seguranca = explode(',', $carros->seguranca);
+}
+
+if(isset($carros->som)){
+    $carros->som = explode(',', $carros->som);
+}
+
          $this->performAjaxValidation(array($veiculos,$onibus));
  if(!empty($_POST)){
 
@@ -121,6 +189,43 @@ if(isset($veiculos->itens)){
 }
          
   if($veiculos->validate()){ 
+       ###################################################
+			################ UPLOAD DE IMAGENS ################
+			###################################################
+			
+			Yii::import('application.extensions.upload.Upload');
+			
+			$imgs = array();
+			foreach ($_FILES['Cv2VeiculosVeiculos'] as $k => $l) {
+				if (is_array($l)) {
+					foreach ($l as $i => $v) {
+						if (!array_key_exists($i, $imgs))
+							$imgs[$i] = array();
+						$imgs[$i][$k] = $v;
+					}
+				} else {
+					$imgs[0][$k] = $l;
+				}
+			}
+			
+			$i = 1;
+			foreach ($imgs as $img) {
+				set_time_limit(0);
+
+				$imagem = new Upload($img);
+
+				if ($imagem->uploaded) {
+					$pasta = '../imagens/' . $veiculos->id_vendedor . '/';
+					$imagem->process($pasta);
+					if ($imagem->processed) {
+						$veiculos->{"foto_$i"} = $imagem->file_dst_name;
+						$imagem->clean();
+					} else {
+						echo 'error : ' . $imagem->error;
+					}
+				}
+				$i++;
+			}
      $veiculos->save();
      
      $onibus->id_veiculo = $veiculos->primaryKey;
@@ -191,6 +296,22 @@ if(isset($veiculos->itens)){
         }
        
     }
+    
+    public function actionVender($id) {
+        $movimentacao = new Cv2VeiculosMovimentacoes;
+
+             if (isset($id) && $id > 0) {
+             $veiculos=$this->loadModel($id);
+            
+             $movimentacao->id_tipo = 2;
+     $movimentacao->id_veiculo = $veiculos->primaryKey;
+   if($movimentacao->validate()){ 
+     $movimentacao->save(); 
+               $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/anuncios'));
+        }
+       
+    }
+     }
     
     
     

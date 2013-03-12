@@ -59,7 +59,103 @@ class Cv2Itens extends CActiveRecord
 		return array(
 			'idTiposItens' => array(self::BELONGS_TO, 'Cv2TiposItens', 'id_tipos_itens'),
 			'cv2VeiculosItens' => array(self::HAS_MANY, 'Cv2VeiculosItens', 'id_itens'),
-		);
+                    'itensConforto' => array(self::HAS_MANY, 'Cv2VeiculosItens', 'id_itens',
+                 'together' => true,
+                    'condition' => 'itensConforto.id_veiculos_tipos = :id_veiculos_tipos AND id_tipos_itens = :id_tipos_itens', 
+                    'params' => array(
+                    ':id_veiculos_tipos' => 1, 'id_tipos_itens' => 1
+ ),
+),
+//                    carro
+                    'itensExterior' => array(self::HAS_MANY, 'Cv2VeiculosItens', 'id_itens',
+                 'together' => true,
+                    'condition' => 'itensExterior.id_veiculos_tipos = :id_veiculos_tipos AND id_tipos_itens = :id_tipos_itens', 
+                    'params' => array(
+                    ':id_veiculos_tipos' => 1, 'id_tipos_itens' => 2
+ ),
+),
+                    'itensSeguranca' => array(self::HAS_MANY, 'Cv2VeiculosItens', 'id_itens',
+                 'together' => true,
+                    'condition' => 'itensSeguranca.id_veiculos_tipos = :id_veiculos_tipos AND id_tipos_itens = :id_tipos_itens', 
+                    'params' => array(
+                    ':id_veiculos_tipos' => 1, 'id_tipos_itens' => 3
+ ),
+),
+                     'itensSom' => array(self::HAS_MANY, 'Cv2VeiculosItens', 'id_itens',
+                 'together' => true,
+                    'condition' => 'itensSom.id_veiculos_tipos = :id_veiculos_tipos AND id_tipos_itens = :id_tipos_itens', 
+                    'params' => array(
+                    ':id_veiculos_tipos' => 1, 'id_tipos_itens' => 4
+ ),
+),
+//                  caminhao  
+                   'itensConfortoCaminhao' => array(self::HAS_MANY, 'Cv2VeiculosItens', 'id_itens',
+                 'together' => true,
+                    'condition' => 'itensConfortoCaminhao.id_veiculos_tipos = :id_veiculos_tipos AND id_tipos_itens = :id_tipos_itens', 
+                    'params' => array(
+                    ':id_veiculos_tipos' => 3, 'id_tipos_itens' => 1
+ ),
+),
+                    'itensExteriorCaminhao' => array(self::HAS_MANY, 'Cv2VeiculosItens', 'id_itens',
+                 'together' => true,
+                    'condition' => 'itensExteriorCaminhao.id_veiculos_tipos = :id_veiculos_tipos AND id_tipos_itens = :id_tipos_itens', 
+                    'params' => array(
+                    ':id_veiculos_tipos' => 3, 'id_tipos_itens' => 2
+ ),
+),
+                    'itensSegurancaCaminhao' => array(self::HAS_MANY, 'Cv2VeiculosItens', 'id_itens',
+                 'together' => true,
+                    'condition' => 'itensSegurancaCaminhao.id_veiculos_tipos = :id_veiculos_tipos AND id_tipos_itens = :id_tipos_itens', 
+                    'params' => array(
+                    ':id_veiculos_tipos' => 3, 'id_tipos_itens' => 3
+ ),
+),
+                     'itensSomCaminhao' => array(self::HAS_MANY, 'Cv2VeiculosItens', 'id_itens',
+                 'together' => true,
+                    'condition' => 'itensSomCaminhao.id_veiculos_tipos = :id_veiculos_tipos AND id_tipos_itens = :id_tipos_itens', 
+                    'params' => array(
+                    ':id_veiculos_tipos' => 3, 'id_tipos_itens' => 4
+ ),
+),             
+//                    onibus   
+                     'itensConfortoOnibus' => array(self::HAS_MANY, 'Cv2VeiculosItens', 'id_itens',
+                 'together' => true,
+                    'condition' => 'itensConfortoOnibus.id_veiculos_tipos = :id_veiculos_tipos AND id_tipos_itens = :id_tipos_itens', 
+                    'params' => array(
+                    ':id_veiculos_tipos' => 4, 'id_tipos_itens' => 1
+ ),
+),
+                    'itensExteriorOnibus' => array(self::HAS_MANY, 'Cv2VeiculosItens', 'id_itens',
+                 'together' => true,
+                    'condition' => 'itensExteriorOnibus.id_veiculos_tipos = :id_veiculos_tipos AND id_tipos_itens = :id_tipos_itens', 
+                    'params' => array(
+                    ':id_veiculos_tipos' => 4, 'id_tipos_itens' => 2
+ ),
+),
+                    'itensSegurancaOnibus' => array(self::HAS_MANY, 'Cv2VeiculosItens', 'id_itens',
+                 'together' => true,
+                    'condition' => 'itensSegurancaOnibus.id_veiculos_tipos = :id_veiculos_tipos AND id_tipos_itens = :id_tipos_itens', 
+                    'params' => array(
+                    ':id_veiculos_tipos' => 4, 'id_tipos_itens' => 3
+ ),
+),
+                     'itensSomOnibus' => array(self::HAS_MANY, 'Cv2VeiculosItens', 'id_itens',
+                 'together' => true,
+                    'condition' => 'itensSomOnibus.id_veiculos_tipos = :id_veiculos_tipos AND id_tipos_itens = :id_tipos_itens', 
+                    'params' => array(
+                    ':id_veiculos_tipos' => 4, 'id_tipos_itens' => 4
+ ),
+),
+                    //                    nautica   
+                     'itensEquipamentos' => array(self::HAS_MANY, 'Cv2VeiculosItens', 'id_itens',
+                 'together' => true,
+                    'condition' => 'itensEquipamentos.id_veiculos_tipos = :id_veiculos_tipos AND id_tipos_itens = :id_tipos_itens', 
+                    'params' => array(
+                    ':id_veiculos_tipos' => 5, 'id_tipos_itens' => 5
+ ),
+),
+
+);
 	}
 
 	/**

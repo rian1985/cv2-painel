@@ -1,7 +1,6 @@
-<div class="TituloPaginas">Veículos cadastrados<div class="FiltroAnuncios"><a href="<?php echo $this->createUrl('/anuncios'); ?>">Todos</a> | <a href="<?php echo $this->createUrl('/anuncios/carros'); ?>">Carros</a> | <a href="<?php echo $this->createUrl('/anuncios/motos'); ?>">Motos</a> | <a href="<?php echo $this->createUrl('/anuncios/caminhoes'); ?>">Caminhões</a> | <a href="<?php echo $this->createUrl('/anuncios/onibus'); ?>">Ônibus</a> | <a href="<?php echo $this->createUrl('/anuncios/nautica'); ?>">Naútica</a> | <a href="<?php echo $this->createUrl('/anuncios/outros'); ?>">Outros</a></div></div>
+<div class="TituloPaginas">Veículos anunciados<div class="FiltroAnuncios"><a href="<?php echo $this->createUrl('/anuncios'); ?>">Todos</a> | <a href="<?php echo $this->createUrl('/anuncios/carros'); ?>">Carros</a> | <a href="<?php echo $this->createUrl('/anuncios/motos'); ?>">Motos</a> | <a href="<?php echo $this->createUrl('/anuncios/caminhoes'); ?>">Caminhões</a> | <a href="<?php echo $this->createUrl('/anuncios/onibus'); ?>">Ônibus</a> | <a href="<?php echo $this->createUrl('/anuncios/nautica'); ?>">Náutica</a> | <a href="<?php echo $this->createUrl('/anuncios/outros'); ?>">Outros</a></div></div>
 <div class="CaixaPaginas">
-
-    <?php
+	<?php
                if (count($list) > 0){
                             foreach ($list as $veiculos):
                                 ?>
@@ -16,9 +15,62 @@
         <div class="TipoVeiculo"><?php echo $veiculos['tipo']; ?></div>
         <div style="clear:both"></div>
         <?php if($veiculos['destaque'] === '1'){?>
-         <div class="ItensAcao"><a href="#" class="Visualizar">Visualizar</a> | <a href="<?php echo $this->createUrl('carros/tiraDestaque/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Tirar destaque</a> | <a href="<?php echo $this->createUrl('carros/update/') . "?id=".$veiculos['id']." "; ?>" class="Alterar">Alterar</a> | <a href="<?php echo $this->createUrl('carros/delete/') . "?id=".$veiculos['id']." "; ?>" class="Apagar">Apagar</a></div>
-    <?php } if($veiculos['destaque'] === '0') { ?>
-         <div class="ItensAcao"><a href="#" class="Visualizar">Visualizar</a> | <a href="<?php echo $this->createUrl('carros/destaque/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Destacar</a> | <a href="<?php echo $this->createUrl('carros/update/') . "?id=".$veiculos['id']." "; ?>" class="Alterar">Alterar</a> | <a href="<?php echo $this->createUrl('carros/delete/') . "?id=".$veiculos['id']." "; ?>" class="Apagar">Apagar</a></div>
+         <div class="ItensAcao"> <?php if($veiculos['tipo'] === 'Carro'){ ?><a href="#" class="Visualizar">Visualizar</a>
+            | <a href="<?php echo $this->createUrl('carros/tiraDestaque/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Tirar destaque</a>
+             | <a href="<?php echo $this->createUrl('carros/vender/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Vender</a>
+            | <a href="<?php echo $this->createUrl('carros/update/') . "?id=".$veiculos['id']." "; ?>" class="Alterar">Alterar</a>
+           | <a href="<?php echo $this->createUrl('carros/delete/') . "?id=".$veiculos['id']." "; ?>" class="Apagar">Apagar</a>
+             | <a href="<?php echo $this->createUrl('carros/delete/') . "?id=".$veiculos['id']." "; ?>" class="Apagar">Apagar</a>
+             <?php } ?>
+            
+            <?php if($veiculos['tipo'] === 'Moto'){ ?><a href="#" class="Visualizar">Visualizar</a>
+             | <a href="<?php echo $this->createUrl('motos/tiraDestaque/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Tirar destaque</a> 
+              | <a href="<?php echo $this->createUrl('motos/vender/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Vender</a>
+             | <a href="<?php echo $this->createUrl('motos/update/') . "?id=".$veiculos['id']." "; ?>" class="Alterar">Alterar</a> 
+          | <a href="<?php echo $this->createUrl('motos/delete/') . "?id=".$veiculos['id']." "; ?>" class="Apagar">Apagar</a> <?php } ?>
+            
+             <?php if($veiculos['tipo'] === 'Caminhão'){ ?><a href="#" class="Visualizar">Visualizar</a> 
+           | <a href="<?php echo $this->createUrl('caminhoes/tiraDestaque/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Tirar destaque</a> 
+            | <a href="<?php echo $this->createUrl('caminhoes/vender/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Vender</a>
+              | <a href="<?php echo $this->createUrl('caminhoes/update/') . "?id=".$veiculos['id']." "; ?>" class="Alterar">Alterar</a> 
+           | <a href="<?php echo $this->createUrl('caminhoes/delete/') . "?id=".$veiculos['id']." "; ?>" class="Apagar">Apagar</a> <?php } ?>
+            
+             <?php if($veiculos['tipo'] === 'Ônibus'){ ?><a href="#" class="Visualizar">Visualizar</a>
+            | <a href="<?php echo $this->createUrl('onibus/tiraDestaque/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Tirar destaque</a> 
+             | <a href="<?php echo $this->createUrl('onibus/vender/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Vender</a>
+              | <a href="<?php echo $this->createUrl('onibus/update/') . "?id=".$veiculos['id']." "; ?>" class="Alterar">Alterar</a>
+            | <a href="<?php echo $this->createUrl('onibus/delete/') . "?id=".$veiculos['id']." "; ?>" class="Apagar">Apagar</a> <?php } ?>
+         </div>
+             
+   <?php } if($veiculos['destaque'] === '0') { ?>
+         <div class="ItensAcao"><?php if($veiculos['tipo'] === 'Carro'){ ?><a href="#" class="Visualizar">Visualizar</a> 
+            | <a href="<?php echo $this->createUrl('carros/destaque/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Destacar</a>
+             | <a href="<?php echo $this->createUrl('carros/vender/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Vender</a>
+             | <a href="<?php echo $this->createUrl('carros/update/') . "?id=".$veiculos['id']." "; ?>" class="Alterar">Alterar</a> 
+            | <a href="<?php echo $this->createUrl('carros/delete/') . "?id=".$veiculos['id']." "; ?>" class="Apagar">Apagar</a> <?php } ?>
+         
+         
+         <?php if($veiculos['tipo'] === 'Moto'){ ?><a href="#" class="Visualizar">Visualizar</a> 
+             | <a href="<?php echo $this->createUrl('motos/destaque/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Destacar</a> 
+              | <a href="<?php echo $this->createUrl('motos/vender/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Vender</a>
+             | <a href="<?php echo $this->createUrl('motos/update/') . "?id=".$veiculos['id']." "; ?>" class="Alterar">Alterar</a> 
+           | <a href="<?php echo $this->createUrl('motos/delete/') . "?id=".$veiculos['id']." "; ?>" class="Apagar">Apagar</a> <?php } ?>
+            
+             <?php if($veiculos['tipo'] === 'Caminhão'){ ?><a href="#" class="Visualizar">Visualizar</a> 
+             | <a href="<?php echo $this->createUrl('caminhoes/destaque/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Destacar</a> 
+              | <a href="<?php echo $this->createUrl('caminhoes/vender/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Vender</a>
+              | <a href="<?php echo $this->createUrl('caminhoes/update/') . "?id=".$veiculos['id']." "; ?>" class="Alterar">Alterar</a> 
+            | <a href="<?php echo $this->createUrl('caminhoes/delete/') . "?id=".$veiculos['id']." "; ?>" class="Apagar">Apagar</a> <?php } ?>
+            
+             <?php if($veiculos['tipo'] === 'Ônibus'){ ?><a href="#" class="Visualizar">Visualizar</a> 
+            | <a href="<?php echo $this->createUrl('onibus/destaque/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Destacar</a> 
+             | <a href="<?php echo $this->createUrl('onibus/vender/') . "?id=".$veiculos['id']." "; ?>" class="Destacado">Vender</a>
+             | <a href="<?php echo $this->createUrl('onibus/update/') . "?id=".$veiculos['id']." "; ?>" class="Alterar">Alterar</a> 
+            | <a href="<?php echo $this->createUrl('onibus/delete/') . "?id=".$veiculos['id']." "; ?>" class="Apagar">Apagar</a> <?php } ?>
+ 
+         
+         </div>
+
          <?php } ?>
             
                

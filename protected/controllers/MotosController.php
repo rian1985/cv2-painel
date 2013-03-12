@@ -78,6 +78,43 @@ if(isset($veiculos->itens)){
    $movimentacao->id_tipo = 1;
   
    if($veiculos->validate()){ 
+                               ###################################################
+			################ UPLOAD DE IMAGENS ################
+			###################################################
+			
+			Yii::import('application.extensions.upload.Upload');
+			
+			$imgs = array();
+			foreach ($_FILES['Cv2VeiculosVeiculos'] as $k => $l) {
+				if (is_array($l)) {
+					foreach ($l as $i => $v) {
+						if (!array_key_exists($i, $imgs))
+							$imgs[$i] = array();
+						$imgs[$i][$k] = $v;
+					}
+				} else {
+					$imgs[0][$k] = $l;
+				}
+			}
+			
+			$i = 1;
+			foreach ($imgs as $img) {
+				set_time_limit(0);
+
+				$imagem = new Upload($img);
+
+				if ($imagem->uploaded) {
+					$pasta = '../imagens/' . $veiculos->id_vendedor . '/';
+					$imagem->process($pasta);
+					if ($imagem->processed) {
+						$veiculos->{"foto_$i"} = $imagem->file_dst_name;
+						$imagem->clean();
+					} else {
+						echo 'error : ' . $imagem->error;
+					}
+				}
+				$i++;
+			}
      $veiculos->save();
      
      $motos->id_veiculo = $veiculos->primaryKey;
@@ -202,6 +239,24 @@ if(isset($veiculos->itens)){
         }
        
     }
+    
+    public function actionVender($id) {
+        $movimentacao = new Cv2VeiculosMovimentacoes;
+
+             if (isset($id) && $id > 0) {
+             $veiculos=$this->loadModel($id);
+            
+             $movimentacao->id_tipo = 2;
+     $movimentacao->id_veiculo = $veiculos->primaryKey;
+   if($movimentacao->validate()){ 
+     $movimentacao->save(); 
+           
+           
+               $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/anuncios'));
+        }
+       
+    }
+     }
     
     
     

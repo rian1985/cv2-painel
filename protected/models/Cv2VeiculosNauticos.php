@@ -65,7 +65,7 @@ class Cv2VeiculosNauticos extends CActiveRecord
 			array('motor, marca_motor, combustivel, capacidade_tanque, altura_interior, quantidade_pessoas, camarotes, banheiro', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, tipo_veiculo, marca, modelo, comprimento, boaca, calado, pontal, quantidade_motores, motor, marca_motor, ano_motor, horas_uso, potencia, combustivel, capacidade_tanque, altura_interior, material, quantidade_pessoas, camarotes, banheiro, id_veiculo', 'safe', 'on'=>'search'),
+			array('id, tipo_veiculo, marca, modelo, tipo_motor, comprimento, equipamentos, boaca, calado, pontal, quantidade_motores, motor, marca_motor, ano_motor, horas_uso, potencia, combustivel, capacidade_tanque, altura_interior, material, quantidade_pessoas, camarotes, banheiro, id_veiculo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -88,27 +88,29 @@ class Cv2VeiculosNauticos extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'tipo_veiculo' => 'Tipo Veiculo',
+			'tipo_veiculo' => 'Tipo',
 			'marca' => 'Marca',
 			'modelo' => 'Modelo',
 			'comprimento' => 'Comprimento',
 			'boaca' => 'Boaca',
 			'calado' => 'Calado',
 			'pontal' => 'Pontal',
-			'quantidade_motores' => 'Quantidade Motores',
+			'quantidade_motores' => 'Quantidade de motores',
 			'motor' => 'Motor',
-			'marca_motor' => 'Marca Motor',
-			'ano_motor' => 'Ano Motor',
-			'horas_uso' => 'Horas Uso',
-			'potencia' => 'Potencia',
+			'marca_motor' => 'Marca motor',
+			'ano_motor' => 'Ano do motor',
+			'horas_uso' => 'Horas de uso',
+			'potencia' => 'Potência (HP)',
 			'combustivel' => 'Combustivel',
-			'capacidade_tanque' => 'Capacidade Tanque',
+			'capacidade_tanque' => 'Capacidade do tanque (Litros)',
 			'altura_interior' => 'Altura Interior',
 			'material' => 'Material',
 			'quantidade_pessoas' => 'Quantidade Pessoas',
 			'camarotes' => 'Camarotes',
 			'banheiro' => 'Banheiro',
 			'id_veiculo' => 'Id Veiculo',
+                    'equipamentos' => 'Equipamentos',
+                    'tipo_motor' => 'Tipo de motor'
 		);
 	}
 
@@ -145,6 +147,8 @@ class Cv2VeiculosNauticos extends CActiveRecord
 		$criteria->compare('camarotes',$this->camarotes,true);
 		$criteria->compare('banheiro',$this->banheiro,true);
 		$criteria->compare('id_veiculo',$this->id_veiculo);
+                $criteria->compare('equipamentos',$this->equipamentos);
+                 $criteria->compare('tipo_motor',$this->tipo_motor);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

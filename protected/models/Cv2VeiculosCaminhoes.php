@@ -80,17 +80,18 @@ class Cv2VeiculosCaminhoes extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'quilometros' => 'Quilometros',
-			'tracao' => 'Tracao',
-			'direcao' => 'Direcao',
-			'transmissao' => 'Transmissao',
+			'quilometros' => 'Quilômetros',
+			'tracao' => 'Tração',
+			'direcao' => 'Direção',
+			'transmissao' => 'Transmissão',
 			'cor' => 'Cor',
-			'capacidade_tracao' => 'Capacidade Tracao',
-			'capacidade_carga' => 'Capacidade Carga',
-			'potencia_maxima' => 'Potencia Maxima',
-			'medidas' => 'Medidas',
-			'motor' => 'Motor',
-			'freios' => 'Freios',
+			'capacidade_tracao' => 'Capacidade de tração',
+			'capacidade_carga' => 'Capacidade de carga',
+			'potencia_maxima' => 'Potência máxima (RPM-CV)',
+			'medidas' => 'Medidas do pneu',
+			'motor' => 'Marca motor',
+			'freios' => '
+Sistema de freios',
 			'id_veiculo' => 'Id Veiculo',
 		);
 	}

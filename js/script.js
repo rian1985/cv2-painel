@@ -73,4 +73,12 @@ $(document).ready(function() {
 		$('.ItensAcao').hide();
 	});
 	
+	$('.ListagemMenus').mouseover(function(){
+		$('.ItensAcaoMenus').show();
+	});
+	
+	$('.ListagemMenus').mouseout(function(){
+		$('.ItensAcaoMenus').hide();
+	});
+	
 });

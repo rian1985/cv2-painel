@@ -118,7 +118,7 @@ class MensagensController extends Controller
         
         public function actionMensagens()
 	{
-		 $listmensagens = cv2Mensagens::model()->findAll();
+		 $listmensagens = Cv2Mensagens::model()->findAll();
 
         $this->render('mensagens', array(
             'listmensagens' => $listmensagens,

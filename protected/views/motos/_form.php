@@ -8,6 +8,9 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'cv2-veiculos-veiculos-form',
 	'enableAjaxValidation'=>false,
+'htmlOptions' => array(
+        'enctype' => 'multipart/form-data'
+    ),
 )); ?>
 
 	
@@ -131,11 +134,12 @@ $marcas = Cv2VeiculosMarcas::model()->findAll('id_tipo = :id_tipo', array(':id_t
     </div>
     
     
+     
  <div class="DivCaracteristicas">
       
   <?php echo $form->labelEx($veiculos,'ano'); ?>
             <br>
- <?php echo $form->dropDownList($veiculos, 'ano',array('1945'=>"1945", '1946'=>"1946", '1947'=>"1947", '1948'=>"1948", '1949'=>"1949", '1950'=>"1950", '1951'=>"1951", '1952'=>"1952", '1953'=>"1953", '1954'=>"1954", '1955'=>"1955", '1956'=>"1956", '1957'=>"1957", '1958'=>"1958", '1959'=>"1959", '1960'=>"1960", '1961'=>"1961", '1962'=>"1962", '1963'=>"1963", '1964'=>"1964", '1965'=>"1965", '1966'=>"1966", '1967'=>"1967", '1968'=>"1968", '1969'=>"1969", '1970'=>"1970", '1971'=>"1971", '1972'=>"1972", '1973'=>"1973", '1974'=>"1974", '1975'=>"1975", '1976'=>"1976", '1977'=>"1977", '1978'=>"1978", '1979'=>"1979", '1980'=>"1980", '1981'=>"1981", '1982'=>"1982", '1983'=>"1983", '1984'=>"1984", '1985'=>"1985", '1986'=>"1986", '1987'=>"1987", '1988'=>"1988", '1989'=>"1989", '1990'=>"1990", '1991'=>"1991", '1992'=>"1992", '1993'=>"1993", '1994'=>"1994", '1995'=>"1995", '1996'=>"1996", '1997'=>"1997", '1998'=>"1998", '1999'=>"1999", '2000'=>"2000", '2001'=>"2001", '2002'=>"2002", '2003'=>"2003", '2004'=>"2004", '2005'=>"2005", '2006'=>"2006", '2007'=>"2007", '2008'=>"2008", '2009'=>"2009", '2010'=>"2010", '2011'=>"2011", '2012'=>"2012",'2013'=>"2013")
+ <?php echo $form->dropDownList($veiculos, 'ano', range(date('Y'), 1960, -1)
       ,array('class'=>'Select','empty' => 'Selecione')); ?>
 
  <?php echo $form->error($veiculos,'ano'); ?>
@@ -173,7 +177,7 @@ $marcas = Cv2VeiculosMarcas::model()->findAll('id_tipo = :id_tipo', array(':id_t
     
      <div class="DivCaracteristicas">
          
-  <?php echo $form->labelEx($motos,'Sistema de partida'); ?>
+  <?php echo $form->labelEx($motos,'partida'); ?>
             <br>
  <?php echo $form->dropDownList($motos, 'partida',array('Elétrico', 'Elétrico e Pedal', 'Pedal', 'Outro'), array('class'=>'Select','empty' => 'Selecione')); ?>
  
@@ -222,7 +226,7 @@ $marcas = Cv2VeiculosMarcas::model()->findAll('id_tipo = :id_tipo', array(':id_t
     
        <div class="DivCaracteristicas">
         
-  <?php echo $form->labelEx($motos,'Direção'); ?>
+  <?php echo $form->labelEx($motos,'direcao'); ?>
             <br>
  <?php echo $form->dropDownList($motos, 'direcao',array('Assistida', 'Elétrica', 'Hidráulica', 'Mecânica'), array('class'=>'Select','empty' => 'Selecione')); ?>
  
@@ -234,7 +238,7 @@ $marcas = Cv2VeiculosMarcas::model()->findAll('id_tipo = :id_tipo', array(':id_t
     
   <div class="DivCaracteristicas">
        
-  <?php echo $form->labelEx($veiculos,'Único dono? '); ?>
+  <?php echo $form->labelEx($veiculos,'unico_dono'); ?>
             <br>
  <?php echo $form->dropDownList($veiculos, 'unico_dono', array('Sim', 'Não'), array('class'=>'Select','empty' => 'Selecione')); ?>
  
@@ -242,21 +246,23 @@ $marcas = Cv2VeiculosMarcas::model()->findAll('id_tipo = :id_tipo', array(':id_t
  </div>
     
     <div class="DivCaracteristicas">
-    	Condições do veículo?<br>
-        <select class="Select">
-        	<option>Selecione</option>
-        </select>
-    </div>
+       
+  <?php echo $form->labelEx($veiculos,'condicoes'); ?>
+            <br>
+ <?php echo $form->dropDownList($veiculos, 'condicoes', array('Novo', 'Usado'), array('class'=>'Select','empty' => 'Selecione')); ?>
+ 
+ <?php echo $form->error($veiculos,'condicoes'); ?>
+ </div>
     
     <div style="clear:both"></div>
     
     <div class="DivCaracteristicas">
-		<?php echo $form->labelEx($veiculos,'Valor (R$)'); ?>
+		<?php echo $form->labelEx($veiculos,'valor'); ?>
 		<?php echo $form->textField($veiculos,'valor',array('size'=>20,'maxlength'=>20,'class'=>'Input')); ?>
 		<?php echo $form->error($veiculos,'valor'); ?>
 	</div>
      <div class="DivCaracteristicas">
-		<?php echo $form->labelEx($veiculos,'Valor promocional (R$)'); ?>
+		<?php echo $form->labelEx($veiculos,'valor_promocional'); ?>
 		<?php echo $form->textField($veiculos,'valor_promocional',array('size'=>20,'maxlength'=>20,'class'=>'Input')); ?>
 		<?php echo $form->error($veiculos,'valor_promocional'); ?>
 	</div>
@@ -283,7 +289,7 @@ $marcas = Cv2VeiculosMarcas::model()->findAll('id_tipo = :id_tipo', array(':id_t
 
 
 <div class="DivCampos">
-<?php echo $form->checkBox($veiculos,'anunciado'); ?>
+<?php echo $form->checkBox($veiculos,'anunciado',array('checked'=>'checked')); ?>
     <?php echo $form->labelEx($veiculos,'anunciado'); ?>
 <?php echo $form->error($veiculos,'anunciado'); ?>
 

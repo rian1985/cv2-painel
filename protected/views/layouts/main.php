@@ -24,7 +24,7 @@
             <ul>
                 <li><a href="<?php echo $this->createUrl('/.'); ?>">Home</a></li>
                 <li>|</li>
-                <li><a href="index.php?p=home&pg=1">Meus dados</a></li>
+                <li><a href="<?php echo $this->createUrl('clientes/dados/') . "?id=".Yii::app()->user->id_vendedor.""; ?>">Meus dados</a></li>
                 <li>|</li>
                 <li><a><?php 
 

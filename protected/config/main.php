@@ -60,11 +60,10 @@ return array(
                              'propostas-recebidas/onibus' => 'propostasRecebidas/onibus',
                              'propostas-recebidas/nautica' => 'propostasRecebidas/nautica',
                             'propostas-recebidas/outros' => 'propostasRecebidas/outros',
-                          
-                            'lixeira' => 'lixeira',
-                       
-                            
-
+                           'propostas-recebidas/<id:\d+>' => 'propostasRecebidas/view', 
+                            'propostas-recebidas/delete' => 'propostasRecebidas/delete', 
+                            'lixeira/propostas-recebidas' => 'lixeira/propostasRecebidas',
+      
                          'mensagens/lista' => 'mensagens/mensagens',
 
                             
