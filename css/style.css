@@ -1,0 +1,409 @@
+body{
+	font-family:Arial;background-color:#ededed;margin:0;background-color:#E8E8E8;background-image:url(../images/linha_background.png);
+}
+
+.TopoGeral{
+	background-color:#E6E6E6;padding:5px 0;border-bottom:1px solid #cccccc
+}
+
+.TopoGeral .TopoGeralMeio{
+	width:960px;margin:auto;
+}
+
+.TopoGeral .TopoItensUsuario{
+	width:400px;float:left;
+}
+
+.TopoGeral .TopoAvisos{
+	width:400px;float:right;text-align:right;
+}
+
+.TopoGeral ul{
+	margin:0;padding:0;font-size:11px;color:#cccccc
+}
+
+.TopoGeral li{
+	list-style:none;display:inline-table
+}
+
+.TopoItensUsuario li a{
+	color:#21759B;
+	text-decoration:none;
+	display:block;
+	padding:0 10px
+}
+
+.TopoAvisos li a{
+	color:#21759B;
+	text-decoration:none;
+	display:block;
+}
+
+.TopoGeral li a:hover{
+	text-decoration:underline;
+}
+
+.CaixaNumeroAviso{
+	padding:1px 5px;border-radius:5px;background-color:#CC0000;color:#FFFFFF;font-size:10px;font-weight:bold;
+}
+
+/* CAIXAS DE CONTROLE DE CONTEUDO */
+.CaixaLinhaGeral{
+	border-top:1px solid #ffffff;
+}
+
+.CaixaSite{
+	background-color:#FFFFFF;width:960px;margin:auto;padding:10px 0;border-radius:7px;box-shadow: 0px 0px 3px #888;
+}
+
+.IconesTopo{
+	width:960px;margin:auto;padding:10px 0;
+}
+
+.IconesTopo .Icone{
+	float:right;padding:10px;border-radius:7px;border:1px solid #cccccc;text-align:center;font-size:12px;color:#000000;display:block;text-decoration:none;margin-left:10px;margin-top:10px;
+	background: 					#FFFFFF; /* Old browsers */
+	background: 					-moz-linear-gradient(top,  #FFFFFF 0%, #F2F2F2  100%); /* FF3.6+ */
+	background: 					-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(100%,#F2F2F2 )); /* Chrome,Safari4+ */
+	background: 					-webkit-linear-gradient(top,  #FFFFFF 0%,#F2F2F2  100%); /* Chrome10+,Safari5.1+ */
+	background:						-o-linear-gradient(top,  #FFFFFF 0%,#F2F2F2  100%); /* Opera 11.10+ */
+	background: 					-ms-linear-gradient(top,  #FFFFFF 0%,#F2F2F2  100%); /* IE10+ */
+	background: 					linear-gradient(top,  #FFFFFF 0%,#F2F2F2  100%); /* W3C */
+	filter: 						progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#F2F2F2 ',GradientType=0 ); /* IE6-9 */
+}
+
+.IconesTopo .Icone:hover{
+	background: 					#FFFFFF; /* Old browsers */
+	background: 					-moz-linear-gradient(top,  #FFFFFF 0%, #FFFFFF  100%); /* FF3.6+ */
+	background: 					-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(100%,#FFFFFF )); /* Chrome,Safari4+ */
+	background: 					-webkit-linear-gradient(top,  #FFFFFF 0%,#FFFFFF  100%); /* Chrome10+,Safari5.1+ */
+	background:						-o-linear-gradient(top,  #FFFFFF 0%,#FFFFFF  100%); /* Opera 11.10+ */
+	background: 					-ms-linear-gradient(top,  #FFFFFF 0%,#FFFFFF  100%); /* IE10+ */
+	background: 					linear-gradient(top,  #FFFFFF 0%,#FFFFFF  100%); /* W3C */
+	filter: 						progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#FFFFFF ',GradientType=0 ); /* IE6-9 */
+}
+
+.IconesTopo img{
+	padding:5px 0;
+}
+
+.TituloMenus{
+	border:1px solid #E3E3E3;width:180px;padding:5px 0 5px 15px;margin-left:10px;font-size:12px;font-weight:bold;color:#000000;background-color:#F0F0F0;
+}
+
+.ItensMenu{
+	margin:5px 0 15px 20px;padding:0;width:180px;
+}
+
+.ItensMenu li{
+	list-style:none;background-image:url(../images/ico_menus.gif);background-position:left center;background-repeat:no-repeat;padding-left:10px;
+}
+
+.ItensMenu a{
+	font-size:13px;color:#3399FF;text-decoration:none;display:block;padding-top:3px
+}
+
+.ItensMenu a:hover{
+	text-decoration:underline
+}
+
+/* PAGINAS */
+
+.TituloPaginas{
+	background: 					#F8F8F8; /* Old browsers */
+	background: 					-moz-linear-gradient(top,  #F8F8F8 0%, #ECECEC  100%); /* FF3.6+ */
+	background: 					-webkit-gradient(linear, left top, left bottom, color-stop(0%,#F8F8F8), color-stop(100%,#ECECEC )); /* Chrome,Safari4+ */
+	background: 					-webkit-linear-gradient(top,  #F8F8F8 0%,#ECECEC  100%); /* Chrome10+,Safari5.1+ */
+	background:						-o-linear-gradient(top,  #F8F8F8 0%,#ECECEC  100%); /* Opera 11.10+ */
+	background: 					-ms-linear-gradient(top,  #F8F8F8 0%,#ECECEC  100%); /* IE10+ */
+	background: 					linear-gradient(top,  #F8F8F8 0%,#ECECEC  100%); /* W3C */
+	filter: 						progid:DXImageTransform.Microsoft.gradient( startColorstr='#F8F8F8', endColorstr='#ECECEC ',GradientType=0 ); /* IE6-9 */
+	
+	border:1px solid #CCCCCC;border-radius:5px 5px 0 0;padding:5px 0 5px 15px;font-size:13px;color:#000000;text-shadow:1px 1px 0 #ffffff
+}
+
+.SubTituloPaginas{
+	border-bottom:1px solid #CCCCCC;padding:5px;font-size:16px;color:#666666;
+}
+
+.FiltroAnuncios{
+	float:right;margin-right:10px;font-size:12px;color:#CCCCCC
+}
+
+.FiltroAnuncios a{
+	font-size:11px;color:#0099FF;display:block-inline;padding:0 5px;
+}
+
+.CaixaPaginas{
+	padding:10px;border-right:1px solid #cccccc;border-bottom:1px solid #cccccc;border-left:1px solid #cccccc;margin-bottom:15px
+}
+
+.CaixaPaginas p{
+	font-size:13px;color:#333333;margin:0;padding:0
+}
+
+.CaixaPaginas p a{
+	font-size:13px;color:#3399FF;
+}
+
+.NomeVeiculo{
+	float:left;color:#333333
+}
+
+.ValorNormalVeiculo{
+	float:right;color:#990000;width:250px;text-align:right
+}
+
+.TipoVeiculo{
+	float:right;color:#333333;text-align:left;width:100px;
+}
+
+.VendedorFantasia{
+	float:left;color:#333333;width:250px;height:20px;
+}
+
+.VendedorRazao{
+	float:left;color:#333333;width:250px;height:20px;
+}
+
+.VendedorEmail{
+	float:left;color:#0099FF;width:250px;height:20px;
+}
+
+.VendedorTelefone{
+	float:left;color:#990000;width:150px;height:20px;
+}
+
+.VendedorDataCadastro{
+	float:left;font-size:12px;color:#999999;width:70px;font-weight:bold;
+}
+
+.VendedorDataCadastro .Dia{
+	font-size:20px;color:#0099FF;display:block;
+}
+
+/* PROPOSTA */
+
+.TextoProposta{
+	float:right;color:#333333;text-align:left;width:450px;
+}
+
+.NomeProposta{
+	float:left;color:#333333;
+}
+
+.EmailProposta{
+	font-size:12px;color:#999999
+}
+
+.UserUsuarios{
+	font-size:12px;color:#999999;float:right
+}
+
+/* PROPOSTA*/
+
+.DataVendido{
+	float:left;font-size:12px;color:#999999;width:70px;font-weight:bold;
+}
+
+.DataVendido .Dia{
+	font-size:15px;color:#0099FF;
+}
+
+.DataCadastro{
+	float:left;font-size:12px;color:#999999;width:70px;font-weight:bold;
+}
+
+.DataCadastro .Dia{
+	font-size:15px;color:#0099FF;
+}
+
+.ListagemVeiculos{
+	font-size:15px;color:#3399FF;padding:5px;height:38px;
+}
+
+.ListagemMenus{
+	font-size:15px;color:#3399FF;padding:5px;height:32px;
+}
+
+.ListagemVendedores{
+	font-size:15px;color:#3399FF;padding:5px;height:58px;
+}
+
+.ListagemMensagens{
+	font-size:15px;color:#3399FF;padding:10px;
+}
+
+.ListagemMensagens .TituloMgs{
+	font-size:12px;color:#666666;padding-top:2px;font-weight:bold;
+}
+
+.ListagemMensagens .DescricaoMsg{
+	font-size:12px;color:#666666;padding-top:2px
+}
+
+.CheckMenu{
+	width:30px;float:left
+}
+
+#ItensAcaoMsg{
+	float:right;
+}
+
+.ItensAcaoMenus{
+	display:none;font-size:11px;padding-top:0px;color:#999999;margin-left:30px;
+}
+
+.ItensAcaoMenus a.Editar{
+	color:#3399FF;text-decoration:none
+}
+
+.ItensAcao{
+	display:none;font-size:11px;padding-top:5px;color:#999999;margin-left:75px;
+}
+
+.ItensAcao a.Alterar{
+	color:#3399FF;text-decoration:none
+}
+
+.ItensAcao a.AlterarSenha{
+	color:#FF6600;text-decoration:none
+}
+
+.ItensAcao a.Visualizar{
+	color:#009900;text-decoration:none
+}
+
+.ItensAcao a.Destacar{
+	color:#FF6600;text-decoration:none
+}
+
+.ItensAcao a.Destacado{
+	color:#666666;text-decoration:none
+}
+
+.ItensAcao a.Apagar{
+	color:#990000;text-decoration:none
+}
+
+.ItensAcao a:hover{
+	text-decoration:underline
+}
+
+/* USUARIOS */
+
+.DivCampos{
+	float:left;width:225px;padding:5px;font-size:12px;font-weight:bold;color:#333333
+}
+
+.DivCampos .Input{
+	width:200px;padding:6px
+}
+
+.DivCampos .InputEndereco{
+	width:140px;padding:6px
+}
+
+.DivCampos .InputNumero{
+	width:40px;padding:6px
+}
+
+.CaixaPaginas h1{
+	border-bottom:1px solid #cccccc;font-size:17px;color:#1A79A9;font-weight:normal;margin:0;padding:0
+}
+
+/* CADASTRO DE FOTOS */
+.DivFotosVeiculos{
+	padding:5px;font-size:12px;font-weight:bold;color:#333333;text-align:center;
+}
+
+.DivFotosVeiculos img{
+	border:1px solid #cccccc
+}
+
+.DivFotosVeiculos a{
+	font-size:12px;color:#3399FF
+}
+
+/* BOTOES */
+.BotaoPadrao1{
+	padding:7px 15px;background-color:#1A79A9;color:#FFFFFF;font-size:13px;border:0;border-radius:3px;background-image:url(../images/img_botao_padrao_1.png);background-position:top;background-repeat:repeat-x
+}
+
+/* VEÍCULOS */
+
+.DivCamposVeiculos{
+	padding:5px;font-size:12px;font-weight:bold;color:#333333
+}
+
+.DivCamposVeiculos .Input{
+	width:400px;padding:6px
+}
+
+.DivCaracteristicas{
+	float:left;width:230px;padding:5px 0;font-size:13px;font-weight:bold;color:#125994;
+}
+
+.DivCaracteristicas .Input{
+	padding:6px;width:200px;font-size:13px;color:#666666
+}
+
+.DivCaracteristicas .Select{
+	padding:6px;width:215px;font-size:13px;color:#666666
+}
+
+.DivAdicionais{
+	float:left;padding:5px 0;font-size:12px;color:#125994;
+}
+
+/* FINANCEIRO */
+
+.TitulosFinanceiro{
+	font-size:12px;font-weight:bold;color:#333333;background-color:#ededed
+}
+
+.TitulosFinanceiro .TituloVencimento{
+	padding:7px;float:left;width:120px;border-right:1px solid #ffffff
+}
+
+.TitulosFinanceiro .TituloDescricao{
+	padding:7px;float:left;width:240px;border-right:1px solid #ffffff
+}
+
+.TitulosFinanceiro .TituloAdicional{
+	padding:7px;float:left;width:120px;border-right:1px solid #ffffff
+}
+
+.TitulosFinanceiro .TituloValor{
+	padding:7px;float:left;width:165px;
+}
+
+.ListagemFinanceiro{
+	font-size:15px;color:#3399FF;padding:5px;
+}
+
+.ListagemFinanceiro .Vencimento{
+	float:left;font-size:12px;color:#999999;font-weight:bold;width:130px
+}
+
+.ListagemFinanceiro .Dia{
+	font-size:15px;color:#0099FF;
+}
+
+.ListagemFinanceiro .Descricao{
+	float:left;font-size:12px;color:#999999;font-weight:bold;width:260px
+}
+
+.ListagemFinanceiro .Adicional{
+	float:left;font-size:12px;color:#999999;font-weight:bold;width:140px
+}
+
+.ListagemFinanceiro .Valor{
+	float:left;font-size:12px;color:#CC0000;font-weight:bold;width:165px
+}
+
+.ListagemFinanceiro .Total{
+	float:left;font-size:16px;color:#333333;font-weight:bold;width:130px;text-align:right;padding-right:10px
+}
+
+/* FINANCEIRO */
